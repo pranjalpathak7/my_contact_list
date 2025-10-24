@@ -8,10 +8,6 @@ The application features a modern, responsive frontend with advanced features li
 
 ### [**Live Demo on Vercel**](https://my-contact-list-nu.vercel.app/)
 
-> **Note:** You should replace the link above with a screenshot of your live application.
-
------
-
 ## Features
 
 ### Frontend (Client-Side)
