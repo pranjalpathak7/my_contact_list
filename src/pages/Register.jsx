@@ -64,7 +64,7 @@ const Register = () => {
           minLength="6"
           required
         />
-        <button type="submit">Register</button>
+        <button type="submit" className="btn btn-primary">Register</button>
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>
