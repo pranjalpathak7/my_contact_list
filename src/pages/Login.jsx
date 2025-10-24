@@ -67,7 +67,7 @@ const Login = () => {
               onClick={() => navigator.clipboard.writeText('pranjalpathak876@gmail.com')}
               title="Click to copy"
             >
-              pranjalpathak876@gmail.com
+              tria@gmail.com
             </span>
           </div>
           <div className="credential-item">

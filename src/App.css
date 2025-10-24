@@ -466,10 +466,12 @@ main {
 .form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 2rem;
   padding: 2rem;
   min-height: 80vh;
   background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color-soft) 100%);
+  flex-wrap: wrap;
 }
 .auth-form {
   width: 100%;
@@ -547,7 +549,7 @@ main {
 
 /* --- Dummy Credentials Section --- */
 .dummy-credentials {
-  margin-top: 2rem;
+  margin-top: 0;
   padding: 1.5rem;
   background: linear-gradient(135deg, var(--bg-color-soft), var(--bg-color-mute));
   border-radius: var(--radius-lg);
@@ -555,6 +557,7 @@ main {
   box-shadow: var(--shadow-color);
   max-width: 420px;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .dummy-credentials-header {
@@ -858,9 +861,17 @@ main {
   gap: 1rem;
   }
   
+  .form-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
   .auth-form {
     padding: 2rem;
-    margin: 1rem;
+    margin: 0;
+    max-width: 100%;
   }
   
   .modal-content {
@@ -869,7 +880,7 @@ main {
   }
   
   .dummy-credentials {
-    margin-top: 1.5rem;
+    margin-top: 0;
     padding: 1.25rem;
     max-width: 100%;
   }
@@ -899,7 +910,7 @@ main {
   }
   
   .dummy-credentials {
-  margin-top: 1rem;
+    margin-top: 0;
     padding: 1rem;
   }
   
