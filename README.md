@@ -1,49 +1,189 @@
-# Tria React Assignment: Contact List
+# My Contact List - Full Stack MERN Application
 
-This project is a simple, modern contact list application built with React. It allows users to view, search, and add contacts.
+## Vercel deployed app link: [**https://my-contact-list-nu.vercel.app/**](https://my-contact-list-nu.vercel.app/)
 
-**[Link to your deployed Vercel URL here]**
+This is a complete full-stack contact management application built with the MERN stack (MongoDB, Express.js, React, Node.js). It provides a secure, multi-user environment where users can register, log in, and manage their own private list of contacts.
 
----
+The application features a modern, responsive frontend with advanced features like real-time search, layout toggling, and a light/dark mode theme.
 
-## How to Set Up and Run Locally
+### [**Live Demo on Vercel**](https://my-contact-list-nu.vercel.app/)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [your-repo-url]
+> **Note:** You should replace the link above with a screenshot of your live application.
+
+-----
+
+## Features
+
+### Frontend (Client-Side)
+
+  * **Secure Authentication:** Full user registration and login system.
+  * **JWT Session Management:** Uses JSON Web Tokens (JWT) for managing user sessions. The token is stored and sent with all API requests.
+  * **Global Auth State:** `AuthContext` provides global authentication state to the entire React application.
+  * **Protected Routes:** The main contacts page is a private route, redirecting unauthenticated users to the login page.
+  * **Contact CRUD:** Full Create, Read, and Delete functionality for contacts.
+  * **Modal Form:** Contacts are added via a sleek modal form.
+  * **Dynamic Search:** A single search bar filters contacts in real-time by both **Name** and **Phone Number**.
+  * **Light/Dark Mode Toggle:** A smooth slider toggle to switch between light and dark themes. The user's preference is saved in `localStorage`.
+  * **Layout Toggle:** A segmented control button to instantly switch the contact view between a responsive **Grid Layout** and a compact **List Layout**. This preference is also saved in `localStorage`.
+  * **Responsive Design:** The UI is fully responsive and built with a modern, clean aesthetic using CSS variables.
+  * **Frontend Error Handling:** Form validation and server-side error messages (e.g., "Invalid Credentials") are displayed to the user.
+
+### Backend (Server-Side)
+
+  * **RESTful API:** A full Node.js & Express.js API for handling authentication and contact operations.
+  * **MongoDB Database:** Uses MongoDB Atlas for a cloud-hosted, persistent database.
+  * **User-Specific Data:** All API routes are protected. A user can *only* fetch, create, or delete contacts associated with their own user ID.
+  * **Password Hashing:** User passwords are never stored in plain text. They are securely hashed and salted using `bcryptjs`.
+  * **Token-Based Authentication:** The `/api/auth/login` route validates user credentials and returns a signed JWT for session authorization.
+  * **Private Route Middleware:** A custom `auth` middleware is used to verify the JWT on all protected API endpoints.
+
+-----
+
+## Tech Stack
+
+  * **Frontend:** React, React Router, Axios, Vite
+  * **Backend:** Node.js, Express.js
+  * **Database:** MongoDB (with Mongoose)
+  * **Authentication:** `jsonwebtoken` (JWT), `bcryptjs`
+  * **Deployment:** Vercel
+
+-----
+
+## Local Setup & Installation
+
+To run this project on your local machine, you will need to run the backend server and the frontend client in two separate terminals.
+
+### Prerequisites
+
+  * Node.js (v18 or newer)
+  * npm
+  * Git
+  * A free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account
+
+-----
+
+### 1\. Backend Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/tria-contact-list.git
+cd tria-contact-list
+
+# 2. Navigate to the server directory
+cd server
+
+# 3. Install backend dependencies
+npm install
+```
+
+**4. Create Environment File**
+
+Create a file named `.env` inside the `/server` directory and add the following, replacing the placeholder values:
+
+```.env
+# Get your connection string from your MongoDB Atlas dashboard
+MONGO_URI="mongodb+srv://your_db_user:your_db_password@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
+
+# Create a long, random, and secret string for signing tokens
+JWT_SECRET="your_long_random_jwt_secret_string"
+```
+
+**5. Run the Backend Server**
+
+```bash
+npm run dev
+```
+
+Your backend API will now be running on `http://localhost:5000`.
+
+-----
+
+### 2\. Frontend Setup
+
+```bash
+# 1. Open a new terminal and navigate to the project's root folder
+cd tria-contact-list
+
+# 2. Install frontend dependencies
+npm install
+```
+
+**3. Set API URL for Local Development**
+
+For local development, you must tell the React app to talk to your local backend.
+
+  * Open `src/context/AuthContext.jsx` (or `src/api.js` if you have it).
+
+  * Find the `axios.create` line and change the `baseURL` to point to your local server:
+
+    ```javascript
+    // Change this:
+    const api = axios.create({
+      baseURL: '/api',
+    });
+
+    // To this:
+    const api = axios.create({
+      baseURL: 'http://localhost:5000/api',
+    });
     ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd tria-contact-list
-    ```
-3.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-4.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-    The application will be available at `http://localhost:5173`.
 
----
+**4. Run the Frontend Client**
 
-## Assumptions & Design Choices
+```bash
+npm run dev
+```
 
-[cite_start]The assignment description intentionally left several details open to interpretation. Here are the choices I made:
+Your React application will now be running on `http://localhost:5173`. You can register a new user and start adding contacts.
 
-* **State Management:** I used React's built-in `useState`, `useEffect`, and `useMemo` hooks. This is a clean, modern approach for an application of this scale without needing external libraries.
-* [cite_start]**Component Structure:** I separated logic into distinct components (`ContactList`, `ContactCard`, `SearchBar`, `AddContactForm`) to demonstrate good component design  and reusability. `App.jsx` serves as the main "container" component, managing state and logic.
-* [cite_start]**API Interaction:** Instead of just hardcoding an array in the UI, I created a `mockData.js` file. In `App.jsx`, I use a `useEffect` with a `setTimeout` to *simulate* an asynchronous API call.
-* [cite_start]**Handling Ambiguity:**
-    * **Loading State:** A "Loading..." message appears for 1 second on mount to simulate a network request.
-    * **Empty State (Search):** If a search yields no results, a specific message "No contacts found for..." is displayed.
-    * **Empty State (Initial):** If the contact list is empty, a "No contacts to display" message is shown.
-* **Filtering Logic:** Filtering is case-insensitive and handled in `App.jsx`. The `useMemo` hook is used to optimize performance by ensuring the list is only re-filtered when the `contacts` or `searchTerm` change.
-* [cite_start]**Optional Feature:** I implemented the "Add a new contact" feature[cite: 7]. The form uses its own state, and on submit, it calls a function passed down from `App.jsx` to update the master contact list. New contacts are given a unique ID using `Date.now()`.
+> **Note:** Remember to change the `baseURL` back to `'/api'` before deploying to Vercel.
 
-## Libraries Used
+-----
 
-* [cite_start]**React:** Required by the assignment.
-* **Vite:** Chosen as the build tool for its extremely fast setup and Hot Module Replacement (HMR).
-* [cite_start]**No other auxiliary libraries [cite: 13] were needed.** I chose to demonstrate proficiency with core React hooks rather than pulling in external state management or utility libraries for a project of this size.
+## Deployment
+
+This project is configured for a "monorepo-style" deployment on **Vercel**.
+
+1.  Push your entire project (including the `server` folder) to a GitHub repository.
+2.  Import the repository into Vercel.
+3.  In the Vercel "Project Settings," add your `MONGO_URI` and `JWT_SECRET` as **Environment Variables**.
+4.  The `vercel.json` file in the root directory will automatically:
+      * Build the `/server` folder as a Node.js serverless function.
+      * Build the root folder as a Vite (static) application.
+      * Route all `/api/...` requests to the backend and all other requests to the React app.
+
+-----
+
+## Coding Approaches & Error Handling
+
+### Frontend Architecture
+
+  * **Component-Based:** The UI is broken into small, reusable components (e.g., `ContactCard`, `SearchBar`, `ThemeToggle`).
+  * **State Management:**
+      * **Local State (`useState`):** Used for component-level state, such as form inputs and modal visibility.
+      * **Global State (`Context API`):** The `AuthContext` is used to manage the user's authentication token and status across the entire application, avoiding prop-drilling.
+      * **Derived State (`useMemo`):** The search filtering logic is wrapped in `useMemo` to ensure it only re-calculates when the contact list or search term changes, optimizing performance.
+  * **Routing:** `react-router-dom` handles client-side routing. This includes a `PrivateRoute` component that checks the `AuthContext` and protectively redirects unauthenticated users to the `/login` page.
+
+### Error Handling
+
+This application was built with robust error handling in mind.
+
+1.  **Form Validation (Client-Side):**
+
+      * The "Register" form checks if the "Password" and "Confirm Password" fields match.
+      * The "Add Contact" form checks that all fields are filled.
+
+2.  **API Errors (Server-Side):**
+
+      * The `AuthContext` `login` and `register` functions are designed to `throw` any errors received from the API.
+      * The `Login.jsx` and `Register.jsx` components `catch` these errors, store them in a local `error` state, and display a user-friendly message (e.g., "Invalid credentials" or "User already exists").
+
+3.  **Authentication Errors (Runtime):**
+
+      * The main data-fetching `useEffect` in `Contacts.jsx` is wrapped in a `try...catch` block.
+      * If the API request for contacts fails with a `401 Unauthorized` status (meaning the JWT is invalid or expired), the user is automatically logged out and redirected to the `/login` page.
+
+4.  **Render-Safe Logic:**
+
+      * The search function includes a null-check (`contact.phone && ...`) to prevent the entire application from crashing if a contact record has no phone number.
