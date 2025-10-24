@@ -466,8 +466,8 @@ main {
 .form-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
+  align-items: center;
+  gap: 3rem;
   padding: 2rem;
   min-height: 80vh;
   background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color-soft) 100%);
@@ -476,7 +476,8 @@ main {
 }
 .auth-form {
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
+  min-width: 400px;
   background-color: var(--bg-color-soft);
   padding: 3rem;
   border-radius: var(--radius-lg);
@@ -487,6 +488,7 @@ main {
   gap: 1.5rem;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .auth-form::before {
   content: '';
@@ -551,14 +553,18 @@ main {
 /* --- Dummy Credentials Section --- */
 .dummy-credentials {
   margin-top: 0;
-  padding: 1.5rem;
+  padding: 2.5rem;
   background: linear-gradient(135deg, var(--bg-color-soft), var(--bg-color-mute));
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-color);
-  max-width: 420px;
+  max-width: 450px;
+  min-width: 400px;
   width: 100%;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .dummy-credentials-header {
@@ -864,8 +870,8 @@ main {
   
   .form-container {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 2rem;
     padding: 1rem;
     flex-wrap: nowrap;
   }
@@ -874,7 +880,8 @@ main {
     padding: 2rem;
     margin: 0;
     max-width: 100%;
-    flex: 1;
+    min-width: 350px;
+    flex-shrink: 0;
   }
   
   .modal-content {
@@ -884,9 +891,10 @@ main {
   
   .dummy-credentials {
     margin-top: 0;
-    padding: 1.25rem;
+    padding: 2rem;
     max-width: 100%;
-    flex: 1;
+    min-width: 350px;
+    flex-shrink: 0;
   }
 }
 
@@ -915,8 +923,9 @@ main {
   
   .dummy-credentials {
     margin-top: 0;
-    padding: 1rem;
-    flex: 1;
+    padding: 1.5rem;
+    min-width: 300px;
+    flex-shrink: 0;
   }
   
   .credential-item {
