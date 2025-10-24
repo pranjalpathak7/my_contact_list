@@ -471,7 +471,8 @@ main {
   padding: 2rem;
   min-height: 80vh;
   background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color-soft) 100%);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 .auth-form {
   width: 100%;
@@ -862,16 +863,18 @@ main {
   }
   
   .form-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 1.5rem;
     padding: 1rem;
+    flex-wrap: nowrap;
   }
   
   .auth-form {
     padding: 2rem;
     margin: 0;
     max-width: 100%;
+    flex: 1;
   }
   
   .modal-content {
@@ -883,6 +886,7 @@ main {
     margin-top: 0;
     padding: 1.25rem;
     max-width: 100%;
+    flex: 1;
   }
 }
 
@@ -912,6 +916,7 @@ main {
   .dummy-credentials {
     margin-top: 0;
     padding: 1rem;
+    flex: 1;
   }
   
   .credential-item {
