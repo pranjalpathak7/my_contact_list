@@ -65,7 +65,7 @@ function Contacts() {
       const res = await api.post('/contacts', newContact);
       setContacts((prev) => [res.data, ...prev]);
       setIsModalOpen(false);
-    } catch (err)
+    } catch (err) {
       console.error('Error adding contact', err);
     }
   };
