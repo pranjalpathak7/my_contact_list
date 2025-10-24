@@ -6,7 +6,7 @@ const SearchBar = ({ onSearch }) => {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search by name..."
+        placeholder="Search by name or number..."
         // When the user types, call the function from the parent
         onChange={(e) => onSearch(e.target.value)}
       />
