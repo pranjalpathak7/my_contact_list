@@ -545,6 +545,91 @@ main {
   color: var(--accent-primary-hover);
 }
 
+/* --- Dummy Credentials Section --- */
+.dummy-credentials {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--bg-color-soft), var(--bg-color-mute));
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-color);
+  max-width: 420px;
+  width: 100%;
+}
+
+.dummy-credentials-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.dummy-credentials-header svg {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.dummy-credentials-text {
+  color: var(--text-color-mute);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.credentials-box {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  border: 1px solid var(--border-color-strong);
+}
+
+.credential-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.credential-item:last-child {
+  border-bottom: none;
+}
+
+.credential-label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.credential-value {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  background: var(--bg-color-mute);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--accent-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  word-break: break-all;
+  transition: all 0.2s ease;
+}
+
+.credential-value.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.credential-value.clickable:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px 0 rgba(0, 122, 255, 0.3);
+}
+
 /* --- Enhanced Modal --- */
 .modal-overlay {
   position: fixed;
@@ -770,7 +855,7 @@ main {
   
   .contact-list.grid-view {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+  gap: 1rem;
   }
   
   .auth-form {
@@ -781,6 +866,12 @@ main {
   .modal-content {
     margin: 1rem;
     padding: 1.5rem;
+  }
+  
+  .dummy-credentials {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    max-width: 100%;
   }
 }
 
@@ -805,5 +896,21 @@ main {
   
   .contact-card {
     padding: 0.875rem 1rem;
+  }
+  
+  .dummy-credentials {
+  margin-top: 1rem;
+    padding: 1rem;
+  }
+  
+  .credential-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .credential-value {
+    width: 100%;
+    text-align: left;
   }
 }
