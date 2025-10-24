@@ -50,7 +50,7 @@ function Contacts() {
     getContacts();
   }, [api, logout, navigate]); // Add dependencies
 
-  // --- Event Handlers (MODIFIED) ---
+  // --- Event Handlers (unchanged) ---
   const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   const toggleViewStyle = () => setViewStyle((prev) => (prev === 'grid' ? 'list' : 'grid'));
 
@@ -69,16 +69,11 @@ function Contacts() {
     }
   };
 
-  // --- THIS FUNCTION IS NOW FIXED ---
   const handleDeleteContact = async (idToDelete) => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
       try {
         await api.delete(`/contacts/${idToDelete}`); // Delete from backend
-        
-        // --- THE FIX IS HERE ---
-        // Filter by c._id (from MongoDB) instead of c.id
         setContacts((prev) => prev.filter((c) => c._id !== idToDelete));
-
       } catch (err) {
         console.error('Error deleting contact', err);
       }
@@ -86,11 +81,26 @@ function Contacts() {
   };
 
   const handleSearch = (query) => setSearchTerm(query);
+
+  // --- THIS IS THE FIXED PART ---
   const filteredContacts = useMemo(() => {
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    
+    // If the search term is empty, just return all contacts
+    if (!lowerSearchTerm) {
+      return contacts;
+    }
+    
     return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+      // Check if the name includes the search term
+      contact.name.toLowerCase().includes(lowerSearchTerm) ||
+      
+      // --- THE FIX ---
+      // ONLY check phone if contact.phone exists (is not null or undefined)
+      (contact.phone && contact.phone.includes(searchTerm))
     );
-  }, [contacts, searchTerm]);
+  }, [contacts, searchTerm]); // Only re-run if contacts or searchTerm changes
+
 
   // --- Render Logic (unchanged) ---
   const renderContent = () => {
