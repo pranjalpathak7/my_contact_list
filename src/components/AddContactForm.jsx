@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 
-// Accept 'onAddContact' and new 'onClose' prop
+// 'onClose' prop is passed from the parent (Contacts.jsx)
 const AddContactForm = ({ onAddContact, onClose }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!name || !phone || !email) {
       alert('Please fill in all fields.');
       return;
     }
     
     onAddContact({ name, phone, email });
-    // Note: App.jsx now handles closing the modal on submit,
-    // so we don't strictly need onClose() here, but we'll
-    // keep clearing the form.
+
+    // Clear the form
     setName('');
     setPhone('');
     setEmail('');
   };
 
   return (
-    // The className "add-form" is now used by the modal content
+    // The <h3> is removed, as it's now in the modal header
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>Add New Contact</h3>
       <input
         type="text"
         placeholder="Name"
@@ -44,12 +42,14 @@ const AddContactForm = ({ onAddContact, onClose }) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {/* New button container */}
+      {/* Buttons now use new CSS classes */}
       <div className="form-buttons">
-        <button type="button" className="btn-cancel" onClick={onClose}>
+        <button type="button" className="btn btn-secondary" onClick={onClose}>
           Cancel
         </button>
-        <button type="submit">Add Contact</button>
+        <button type="submit" className="btn btn-primary">
+          Save Contact
+        </button>
       </div>
     </form>
   );

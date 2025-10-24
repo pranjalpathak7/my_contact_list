@@ -35,7 +35,7 @@ const Register = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} className="add-form">
+      <form onSubmit={handleSubmit} className="auth-form">
         <h3>Create Your Account</h3>
         
         {/* Display error message if 'error' state is set */}
