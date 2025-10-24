@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 // Set the base URL for all API requests
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend URL
+  baseURL: '/api', // Your backend URL
 });
 
 // Utility to set the global auth token for axios
