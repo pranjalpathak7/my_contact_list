@@ -1,6 +1,5 @@
 import React from 'react';
 
-// New Avatar Icon
 const AvatarIcon = () => (
   <svg
     className="contact-avatar-icon"
@@ -19,7 +18,6 @@ const AvatarIcon = () => (
 const ContactCard = ({ contact, onDelete }) => {
   return (
     <div className="contact-card">
-      {/* New Avatar */}
       <div className="contact-avatar">
         <AvatarIcon />
       </div>

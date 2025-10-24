@@ -130,10 +130,8 @@ function Contacts() {
       <main>
         <div className="list-container">
           <div className="list-header">
-            {/* SearchBar component is already updated */}
             <SearchBar onSearch={handleSearch} />
 
-            {/* New wrapper for action buttons */}
             <div className="list-header-actions">
               <ViewToggle
                 viewStyle={viewStyle}
@@ -163,11 +161,9 @@ function Contacts() {
         </div>
       </main>
 
-      {/* --- MODAL UPDATED --- */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            {/* New Modal Header */}
             <div className="modal-header">
               <h3>Add New Contact</h3>
               <button
@@ -187,7 +183,6 @@ function Contacts() {
                 </svg>
               </button>
             </div>
-            {/* Pass new `btn` classes to the form */}
             <AddContactForm
               onAddContact={handleAddContact}
               onClose={() => setIsModalOpen(false)}

@@ -87,4 +87,3 @@ const Login = () => {
 };
 
 export default Login;
-// You can create a similar component for Register.jsx

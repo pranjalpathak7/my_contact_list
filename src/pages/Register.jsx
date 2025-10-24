@@ -53,7 +53,7 @@ const Register = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          minLength="6" // Good practice to enforce minimum length
+          minLength="6" 
           required
         />
         <input

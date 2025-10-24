@@ -22,7 +22,6 @@ const AddContactForm = ({ onAddContact, onClose }) => {
   };
 
   return (
-    // The <h3> is removed, as it's now in the modal header
     <form className="add-form" onSubmit={handleSubmit}>
       <input
         type="text"
@@ -42,7 +41,7 @@ const AddContactForm = ({ onAddContact, onClose }) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {/* Buttons now use new CSS classes */}
+      
       <div className="form-buttons">
         <button type="button" className="btn btn-secondary" onClick={onClose}>
           Cancel

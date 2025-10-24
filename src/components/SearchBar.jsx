@@ -2,7 +2,6 @@ import React from 'react';
 
 const SearchBar = ({ onSearch }) => {
   return (
-    // New container for icon positioning
     <div className="search-bar-container">
       {/* Search Icon */}
       <svg
@@ -17,7 +16,6 @@ const SearchBar = ({ onSearch }) => {
           clipRule="evenodd"
         />
       </svg>
-      {/* Input is now inside the container */}
       <input
         type="text"
         placeholder="Search by name or number..."
