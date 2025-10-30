@@ -92,8 +92,8 @@ function Contacts() {
 
     return contacts.filter(
       (contact) =>
-        contact.name.toLowerCase().replace(" ", "").includes(lowerSearchTerm.replace(" ", "")) ||
-        (contact.phone.replace(" ", "") && contact.phone.includes(searchTerm))
+        contact.name.toLowerCase().replaceAll(" ", "").includes(lowerSearchTerm.replaceAll(" ", "")) ||
+        (contact.phone.replaceAll(" ", "") && contact.phone.includes(searchTerm))
     );
   }, [contacts, searchTerm]);
 
